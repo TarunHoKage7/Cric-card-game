@@ -138,7 +138,8 @@
   }
 
 
-
+/*it would be better to use em instead of pixels to support zooming in option
+ and thus removing the need to write so many properties in media queries*/
   @media screen and (max-width: 1200px){
     
     .titles > h2{
