@@ -49,7 +49,7 @@ const strategies  = {
     pull: {
        image : "/assets/offcutter.jpeg",
        bestagainst :{ 
-           offcutter:"./assets/offcutter.png",
+           offcutter:"./assets/offcutter.jpeg",
            bouncer:"/assets/offcutter.jpeg"
     },
     badagainst:{
@@ -61,7 +61,7 @@ const strategies  = {
    latecut: {
      image :"/assets/offcutter.jpeg",
      bestagainst :{ 
-        legcutter :"./assets/offcutter.png",
+        legcutter :"./assets/offcutter.jpeg",
         reversestring :"/assets/offcutter.jpeg"
  },
  badagainst:{
@@ -72,7 +72,7 @@ const strategies  = {
    flick : {
      image: "/assets/offcutter.jpeg",
      bestagainst :{ 
-        inswinger :"./assets/offcutter.png",
+        inswinger :"./assets/offcutter.jpeg",
         offcutter :"/assets/offcutter.jpeg"
  },
  badagainst:{
@@ -86,6 +86,8 @@ const strategies  = {
 
 
 function displayStratagies(){
+   //console.log("function accessed");
+
    //This loop iterates over strategies by shot names
   for(const shot in strategies){
    //creating a container element i.e., Row container. 
@@ -93,36 +95,36 @@ function displayStratagies(){
    let item = document.createElement("li");
    const itemClass = item.classList;
    itemClass.add("container");
-
+   //document.querySelector("ul").appendChild(item)
    //creating the left div
    let leftSec = document.createElement("div");
    const leftSecClass = leftSec.classList;
    leftSecClass.add("left");
-
    //This loop iterates over the bestagainst object which has atmost three key-value pairs in it.
    //we will then append individual images onto the left div.
-   for(const ball in shot.bestagainst){
+   //console.log(strategies[`${shot}`].image)
+   for(const ball in strategies[`${shot}`].bestagainst){
+      //console.log(ball);
       let image = document.createElement("img")
-      let imgClass = item.classList;
+      let imgClass = image.classList;
       imgClass.add("playImg");
-      image.src = shot.bestagainst.ball;
+      image.src = strategies[`${shot}`].bestagainst[`${ball}`];
       image.alt = ball;
       leftSec.appendChild(image);
    }
 
    //appending the left div onto the item (container).
    item.appendChild(leftSec);
-
-   ////creating the middle div
+   //creating the middle div
    let middleSec = document.createElement("div");
    const middleSecClass = middleSec.classList;
-   leftSecClass.add("middle");
+   middleSecClass.add("middle");
 
    //Creating and appending the shot image onto the middle div
    let image = document.createElement("img")
-   let imgClass = item.classList;
+   let imgClass = image.classList;
    imgClass.add("playImg");
-   image.src = shot.image;
+   image.src = strategies[`${shot}`].image;
    image.alt = shot;
    middleSec.appendChild(image);
 
@@ -136,17 +138,18 @@ function displayStratagies(){
 
    //This loop iterates over the badagainst object which has atmost three key-value pairs in it.
    //we will then append individual images onto the right div.
-   for(const ball in shot.badagainst){
+   for(const ball in strategies[`${shot}`].badagainst){
       let image = document.createElement("img")
-      let imgClass = item.classList;
+      let imgClass = image.classList;
       imgClass.add("playImg");
-      image.src = shot.badagainst.ball;
+      image.src = strategies[`${shot}`].badagainst[`${ball}`];
       image.alt = ball;
       rightSec.appendChild(image);
    }
 
    //appending the right div onto the item (container)
    item.appendChild(rightSec);
+   document.querySelector("ul").appendChild(item)
   }
 
 
